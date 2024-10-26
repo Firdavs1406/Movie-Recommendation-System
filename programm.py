@@ -9,8 +9,8 @@ with open('cv.pkl', 'rb') as f:
     cv = pickle.load(f)
     
 @st.cache_data
-def cosine(cv):
-    return cosine_similarity(cv, cv)
+def cosine(_cv):
+    return cosine_similarity(_cv, _cv)
 
 similarity = cosine(cv)
 
