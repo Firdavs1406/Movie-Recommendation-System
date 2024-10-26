@@ -60,5 +60,5 @@ if st.button("Get Recommendations "):
                 st.write(f"**Title:** {title}")
                 st.write(f"**Description:** {overview}")
                 st.write(f"**Release Date:** {release_date}")
-                st.write(f"**Runtime:** {runtime} минут")
+                st.write(f"**Runtime:** {runtime} min.")
             st.write("---")
