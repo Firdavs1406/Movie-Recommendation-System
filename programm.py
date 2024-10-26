@@ -8,12 +8,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 with open('cv.pkl', 'rb') as f:
     cv = pickle.load(f)
     
-@st.cache_resource
-def compute_similarity(cv_matrix):
-    return cosine_similarity(cv_matrix, cv_matrix)
-
-similarity = compute_similarity(cv)
-
 with open('indices.pkl', 'rb') as f:
     indices = pickle.load(f)
 
@@ -39,10 +33,9 @@ def get_recommendations(movie_title):
         return []
     
     idx = idx[0]  # Получаем индекс первого совпадения
-    similarity_scores = list(enumerate(similarity[idx]))
-    similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)[1:7]
-    similar_movie_indices = [score[0] for score in similarity_scores]
-    
+    similarity_scores = cosine_similarity(cv[idx], cv).flatten()
+    similar_movie_indices = similarity_scores.argsort()[-7:-1][::-1]
+
     return filtered_df['title'].iloc[similar_movie_indices].tolist()
 
 # Интерфейс Streamlit
