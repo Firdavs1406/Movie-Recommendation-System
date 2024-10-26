@@ -56,7 +56,7 @@ if st.button("Get Recommendations "):
             col1, col2 = st.columns(2)
             with col1:
                 st.image(poster_url, width=200)
-            with col4:
+            with col2:
                 st.write(f"**Title:** {title}")
                 st.write(f"**Description:** {overview}")
                 st.write(f"**Release Date:** {release_date}")
