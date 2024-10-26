@@ -12,7 +12,7 @@ with open('cv.pkl', 'rb') as f:
 def cosine(cv):
     return cosine_similarity(cv, cv)
 
-similarity = cosine(cv, cv)
+similarity = cosine(cv)
 
 with open('indices.pkl', 'rb') as f:
     indices = pickle.load(f)
