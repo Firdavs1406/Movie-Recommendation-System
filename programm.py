@@ -8,11 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 with open('cv.pkl', 'rb') as f:
     cv = pickle.load(f)
     
-@st.cache_data
-def cosine(_cv):
-    return cosine_similarity(_cv, _cv)
-
-similarity = cosine(cv)
+similarity = cosine_similarity(cv, cv)
 
 with open('indices.pkl', 'rb') as f:
     indices = pickle.load(f)
