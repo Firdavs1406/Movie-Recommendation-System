@@ -29,7 +29,7 @@ def get_movie_details(movie_id):
 def get_recommendations(movie_title):
     idx = filtered_df[filtered_df['title'].str.contains(movie_title, case=False)].index
     if len(idx) == 0:
-        st.error("Фильм не найден. Попробуйте другое название.")
+        st.error("Movie not found. Please, try another title.")
         return []
     
     idx = idx[0]  # Получаем индекс первого совпадения
@@ -39,16 +39,16 @@ def get_recommendations(movie_title):
     return filtered_df['title'].iloc[similar_movie_indices].tolist()
 
 # Интерфейс Streamlit
-st.title("🎬 Система рекомендации фильмов")
+st.title("🎬 Movie Recommendations System")
 
-movie_title = st.selectbox("Введите название фильма:", 
+movie_title = st.selectbox("Choose movie title:", 
                             filtered_df['title'].values)
 
-if st.button("Получить рекомендации"):
+if st.button("Get Recommendations "):
     recommendations = get_recommendations(movie_title)
     
     if recommendations:
-        st.subheader("Рекомендованные фильмы:")
+        st.subheader("Recommended movies:")
         for title in recommendations:
 
             movie_id = filtered_df[filtered_df['title'] == title]['id'].values[0]
@@ -57,8 +57,8 @@ if st.button("Получить рекомендации"):
             with col1:
                 st.image(poster_url, width=150)
             with col2:
-                st.write(f"**Название:** {title}")
-                st.write(f"**Описание:** {overview}")
-                st.write(f"**Дата выхода:** {release_date}")
-                st.write(f"**Время:** {runtime} минут")
+                st.write(f"**Title:** {title}")
+                st.write(f"**Description:** {overview}")
+                st.write(f"**Release Date:** {release_date}")
+                st.write(f"**Runtime:** {runtime} минут")
             st.write("---")
